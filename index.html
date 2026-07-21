@@ -215,6 +215,7 @@ svg{max-width:100%}
           <button type="button" data-s="0" aria-pressed="true">[1] <span data-l="es">crudo</span><span data-l="en">raw</span></button>
           <button type="button" data-s="1" aria-pressed="false">[2] <span data-l="es">limpieza</span><span data-l="en">clean</span></button>
           <button type="button" data-s="2" aria-pressed="false">[3] <span data-l="es">anomalías</span><span data-l="en">anomalies</span></button>
+          <button type="button" data-s="3" aria-pressed="false">[4] <span data-l="es">interpretación</span><span data-l="en">reading</span></button>
         </div>
         <svg class="plot" viewBox="0 0 640 240" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Serie de datos">
           <g id="gl"></g>
@@ -223,6 +224,7 @@ svg{max-width:100%}
           <path id="raw" class="ln ln-raw"></path>
           <path id="cln" class="ln ln-cln" style="opacity:0"></path>
           <g id="pts"></g>
+          <g id="ann"></g>
         </svg>
         <div class="ro" id="ro"></div>
       </div>
@@ -353,20 +355,33 @@ svg{max-width:100%}
     return '<circle class="pt" cx="'+X(k).toFixed(1)+'" cy="'+Y(raw[k]).toFixed(1)+'" r="0" opacity="0"/>';}).join('');
 
   var step=0;
+  var REPO='https://github.com/MaximumTech17/deteccion-anomalias-dolar';
   var TXT={es:[
-    '<span class="p">&gt;</span> <b>48 observaciones sin procesar.</b> Ruido, escala irregular y valores sospechosos. Así llega el dato: todavía no dice nada.',
-    '<span class="p">&gt;</span> <b>serie suavizada.</b> Media móvil centrada que separa la señal del ruido. La tendencia ya es legible.',
-    '<span class="p">&gt;</span> <b>3 anomalías detectadas.</b> Puntos que se apartan del comportamiento esperado — lo que hay que investigar antes de reportar.'],
+    '<span class="p">&gt;</span> Así llega el dato en la vida real: <b>48 observaciones crudas</b>, con ruido y valores sospechosos. Todavía no dice nada.',
+    '<span class="p">&gt;</span> <b>Serie suavizada</b> con media móvil centrada (±2): separa la señal del ruido y la tendencia ya se lee.',
+    '<span class="p">&gt;</span> <b>3 anomalías</b> — días que se apartan más de 3σ de lo habitual. La estadística las marca sola, sin decidir a mano cuáles.',
+    '<span class="p">&gt;</span> Aquí entra el economista: la máquina detecta <b>qué</b> es raro; interpretarlo —¿un shock externo?, ¿una decisión de política?— es lo que vuelve un dato una decisión. <a href="'+REPO+'" target="_blank" rel="noopener">ver el caso real con el dólar →</a>'],
   en:[
-    '<span class="p">&gt;</span> <b>48 unprocessed observations.</b> Noise, irregular scale and suspicious values. This is how data arrives: it says nothing yet.',
-    '<span class="p">&gt;</span> <b>smoothed series.</b> A centered moving average separating signal from noise. The trend is now readable.',
-    '<span class="p">&gt;</span> <b>3 anomalies detected.</b> Points departing from expected behaviour — what you investigate before reporting.']};
-  function paint(){document.getElementById('ro').innerHTML=TXT[B.getAttribute('data-active')==='en'?'en':'es'][step];}
+    '<span class="p">&gt;</span> This is how data arrives in real life: <b>48 raw observations</b>, noisy and full of suspicious values. It says nothing yet.',
+    '<span class="p">&gt;</span> <b>Smoothed series</b> with a centered moving average (±2): it splits signal from noise and the trend becomes readable.',
+    '<span class="p">&gt;</span> <b>3 anomalies</b> — days departing more than 3σ from the usual. Statistics flags them on its own, no manual labelling.',
+    '<span class="p">&gt;</span> Here the economist steps in: the machine detects <b>what</b> is odd; reading it —an external shock?, a policy decision?— is what turns a data point into a decision. <a href="'+REPO+'" target="_blank" rel="noopener">see the real case with the dollar →</a>']};
+  var ANN={es:['¿shock externo?','¿política?','¿pánico?'],en:['external shock?','policy?','panic?']};
+  function lang(){return B.getAttribute('data-active')==='en'?'en':'es';}
+  function paint(){
+    document.getElementById('ro').innerHTML=TXT[lang()][step];
+    var a=document.getElementById('ann');
+    a.innerHTML = step!==3 ? '' : OUT.map(function(k,idx){
+      var yy = raw[k]>=cln[k] ? Y(raw[k])-9 : Y(raw[k])+16;
+      return '<text x="'+X(k).toFixed(1)+'" y="'+yy.toFixed(1)+'" text-anchor="middle" style="font-family:var(--m);font-size:9px;fill:var(--amber)">'+ANN[lang()][idx]+'</text>';
+    }).join('');
+  }
   function setStep(s){step=s;
     document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.s===s?'true':'false');});
     document.getElementById('raw').style.opacity=s===0?'1':(s===1?'.2':'.3');
     document.getElementById('cln').style.opacity=s===0?'0':'1';
-    document.querySelectorAll('.pt').forEach(function(c){c.setAttribute('r',s===2?'5.5':'0');c.setAttribute('opacity',s===2?'1':'0');});
+    var showPts=s>=2;
+    document.querySelectorAll('.pt').forEach(function(c){c.setAttribute('r',showPts?'5.5':'0');c.setAttribute('opacity',showPts?'1':'0');});
     paint();}
   document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){setStep(+b.dataset.s);});});
 
