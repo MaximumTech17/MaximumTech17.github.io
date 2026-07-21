@@ -170,7 +170,7 @@ svg{max-width:100%}
     </div>
 
     <!-- perfil -->
-    <div class="cmd rv" style="animation-delay:.28s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">cat <span class="flag">perfil.md</span></span></div>
+    <div class="cmd rv" style="animation-delay:.28s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">cat <span class="flag"><span data-l="es">perfil.md</span><span data-l="en">profile.md</span></span></span></div>
     <div class="out about rv" style="animation-delay:.36s">
       <div data-l="es">
         <p>Me interesan los problemas donde los datos <span class="hl">todavía no tienen forma</span>: series que hay que limpiar, procesos manuales que piden automatización, preguntas de negocio que aún no son una métrica.</p>
@@ -194,7 +194,7 @@ svg{max-width:100%}
     </div>
 
     <!-- herramientas -->
-    <div class="cmd rv" style="animation-delay:.62s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">ls <span class="flag">herramientas/</span></span></div>
+    <div class="cmd rv" style="animation-delay:.62s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">ls <span class="flag"><span data-l="es">herramientas/</span><span data-l="en">skills/</span></span></span></div>
     <div class="out rv" style="animation-delay:.68s">
       <div class="ls">
         <span class="k">python</span><span class="k">R</span><span class="k">sql</span><span class="k">power-bi</span><span>stata</span>
@@ -229,30 +229,25 @@ svg{max-width:100%}
       <div class="disc"><span data-l="es"># serie simulada con fines ilustrativos — no representa datos reales</span><span data-l="en"># simulated series for illustration — not real data</span></div>
     </div>
 
-    <!--  CÓMO AGREGAR PROYECTOS
-          Para activar: borra la línea de arriba y la de cierre del comentario.
-          Copia el bloque .job por cada proyecto. Sube cada proyecto a su propio
-          repo en GitHub y pega el enlace en el href.
-
-    <div class="cmd rv"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">ls <span class="flag">proyectos/</span></span></div>
-    <div class="out rv">
+    <!-- proyectos -->
+    <div class="cmd rv" style="animation-delay:.83s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">ls <span class="flag"><span data-l="es">proyectos/</span><span data-l="en">projects/</span></span></span></div>
+    <div class="out rv" style="animation-delay:.89s">
       <div class="job">
-        <div class="h">Detección de anomalías en series económicas</div>
-        <div class="co">
-          <a href="https://github.com/MaximumTech17/NOMBRE-DEL-REPO" target="_blank" rel="noopener">↗ código</a>
-          &nbsp;·&nbsp;
-          <a href="https://NOMBRE-DEL-REPO.streamlit.app" target="_blank" rel="noopener">↗ demo en vivo</a>
-        </div>
-        <ul>
-          <li>Pipeline en Python sobre datos públicos (Banrep, DANE): limpieza, modelamiento y detección de anomalías.</li>
-          <li>Stack: Python · pandas · scikit-learn · Streamlit. Documentado y reproducible.</li>
+        <div class="h"><span data-l="es">Panel de gestión de licencias y ventas</span><span data-l="en">License &amp; sales management panel</span></div>
+        <div class="co"><a href="https://github.com/MaximumTech17/panel-cuentas" target="_blank" rel="noopener">↗ <span data-l="es">código</span><span data-l="en">code</span></a></div>
+        <ul data-l="es">
+          <li>Sistema full-stack: autenticación por roles, inventario, pedidos, precios, finanzas y auditoría.</li>
+          <li>Python · Flask · SQLAlchemy · MySQL · rate limiting · hashing · PWA. Base de datos de 8 tablas.</li>
+        </ul>
+        <ul data-l="en">
+          <li>Full-stack system: role-based auth, inventory, orders, pricing, finance and audit trail.</li>
+          <li>Python · Flask · SQLAlchemy · MySQL · rate limiting · hashing · PWA. 8-table database.</li>
         </ul>
       </div>
     </div>
-    -->
 
     <!-- experiencia -->
-    <div class="cmd rv" style="animation-delay:.86s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">history <span class="flag">--trabajo</span></span></div>
+    <div class="cmd rv" style="animation-delay:.86s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">history <span class="flag"><span data-l="es">--trabajo</span><span data-l="en">--work</span></span></span></div>
     <div class="out rv" style="animation-delay:.92s">
       <div class="job">
         <div class="h"><span data-l="es">Profesional — Estudios Económicos y Análisis de Datos</span><span data-l="en">Professional — Economic Studies &amp; Data Analysis</span></div>
@@ -285,7 +280,7 @@ svg{max-width:100%}
     </div>
 
     <!-- educación -->
-    <div class="cmd rv" style="animation-delay:.98s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">cat <span class="flag">educacion.md</span></span></div>
+    <div class="cmd rv" style="animation-delay:.98s"><span class="ps1"><span class="u">visitor</span><span class="s">@</span><span class="p">portfolio</span><span class="s">:~$</span></span> <span class="typed">cat <span class="flag"><span data-l="es">educacion.md</span><span data-l="en">education.md</span></span></span></div>
     <div class="out rv" style="animation-delay:1.04s">
       <div class="cr">
         <div><span data-l="es"><b>Economista</b> — Universidad del Tolima</span><span data-l="en"><b>Economist</b> — Universidad del Tolima</span><time>2025</time></div>
