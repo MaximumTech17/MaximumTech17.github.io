@@ -253,13 +253,15 @@ svg{max-width:100%}
           <li>Reconstruí en SQL Server un hallazgo que ya había encontrado en Excel/Power BI en Vortech Express: la actividad de un cliente cae semanas antes de cancelar, no después.</li>
           <li>Arquitectura por capas (bronze → silver → gold) y una consulta final con CTE + <code>LAG()</code> (window function) + JOIN que alinea a cada cliente cancelado con su propia fecha de cancelación.</li>
           <li>Resultado: actividad estable (~12-14 logins/mes) hasta un mes antes de cancelar, luego cae a 2.8 — el punto exacto donde debería activarse una alerta de retención.</li>
-          <li>SQL Server (T-SQL) · Python (datos simulados). Dataset con el mismo patrón de churn de la operación real.</li>
+          <li>Dashboard en Power BI conectado directo a las vistas gold: el mismo hallazgo en formato visual (logins vs. meses antes de la cancelación, línea base de clientes activos), más desglose de cancelación por plan y ciudad.</li>
+          <li>SQL Server (T-SQL) · Power BI · Python (datos simulados). Dataset con el mismo patrón de churn de la operación real.</li>
         </ul>
         <ul data-l="en">
           <li>Rebuilt in SQL Server a finding I'd already made in Excel/Power BI at Vortech Express: customer activity drops weeks before a cancellation, not after.</li>
           <li>Layered architecture (bronze → silver → gold) and a final query combining a CTE, a <code>LAG()</code> window function, and a JOIN that aligns every cancelled customer to their own cancellation date.</li>
           <li>Result: engagement holds steady (~12-14 logins/month) until one month out, then collapses to 2.8 — the exact point where a retention alert should trigger.</li>
-          <li>SQL Server (T-SQL) · Python (simulated data). Dataset built to match the real business's churn pattern.</li>
+          <li>Power BI dashboard connected directly to the gold views: the same finding as a visual (logins vs. months before cancellation, active-customer baseline), plus cancellation breakdowns by plan and city.</li>
+          <li>SQL Server (T-SQL) · Power BI · Python (simulated data). Dataset built to match the real business's churn pattern.</li>
         </ul>
       </div>
       <div class="job">
